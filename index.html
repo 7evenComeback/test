@@ -698,14 +698,18 @@ sb.auth.onAuthStateChange(async (event, session) => {
 });
 
 async function loadProfile() {
-  const { data } = await sb.from('profiles').select('*').eq('id', currentUser.id).single();
-  currentProfile = data;
-  if (!data) {
-    // Create profile if missing (OAuth users)
-    const username = currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || 'User';
-    await sb.from('profiles').insert({ id: currentUser.id, username });
-    const { data: d2 } = await sb.from('profiles').select('*').eq('id', currentUser.id).single();
-    currentProfile = d2;
+  try {
+    const { data, error } = await sb.from('profiles').select('*').eq('id', currentUser.id).maybeSingle();
+    currentProfile = data;
+    if (!data) {
+      const username = currentUser.user_metadata?.username || currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || 'User';
+      await sb.from('profiles').upsert({ id: currentUser.id, username, is_admin: false }, { onConflict: 'id' });
+      const { data: d2 } = await sb.from('profiles').select('*').eq('id', currentUser.id).maybeSingle();
+      currentProfile = d2 || { id: currentUser.id, username, is_admin: false };
+    }
+  } catch(e) {
+    console.error('loadProfile error:', e);
+    currentProfile = { id: currentUser.id, username: currentUser.email?.split('@')[0] || 'User', is_admin: false };
   }
 }
 
@@ -744,8 +748,14 @@ async function loginEmail() {
   if (!email || !password) { showAuthError('Remplis tous les champs'); return; }
   const btn = document.getElementById('btnLogin');
   btn.disabled = true; btn.textContent = 'CONNEXION...';
-  const { error } = await sb.auth.signInWithPassword({ email, password });
-  if (error) { showAuthError(error.message); btn.disabled = false; btn.textContent = 'SE CONNECTER'; }
+  try {
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    if (error) { showAuthError(error.message); btn.disabled = false; btn.textContent = 'SE CONNECTER'; }
+    // on success, onAuthStateChange handles the redirect
+  } catch(e) {
+    showAuthError('Erreur de connexion, réessaie.');
+    btn.disabled = false; btn.textContent = 'SE CONNECTER';
+  }
 }
 
 async function registerUser() {
