@@ -686,6 +686,7 @@ const SEANCES = [
 
 // ══ AUTH ══
 sb.auth.onAuthStateChange(async (event, session) => {
+  console.log('AUTH EVENT:', event, session?.user?.email);
   if (session?.user) {
     currentUser = session.user;
     await loadProfile();
@@ -696,6 +697,17 @@ sb.auth.onAuthStateChange(async (event, session) => {
     showAuth();
   }
 });
+
+// Check session on load
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  console.log('INIT SESSION:', session?.user?.email);
+  if (session?.user) {
+    currentUser = session.user;
+    await loadProfile();
+    showApp();
+  }
+})();
 
 async function loadProfile() {
   try {
@@ -749,10 +761,18 @@ async function loginEmail() {
   const btn = document.getElementById('btnLogin');
   btn.disabled = true; btn.textContent = 'CONNEXION...';
   try {
-    const { error } = await sb.auth.signInWithPassword({ email, password });
-    if (error) { showAuthError(error.message); btn.disabled = false; btn.textContent = 'SE CONNECTER'; }
-    // on success, onAuthStateChange handles the redirect
+    const { data, error } = await sb.auth.signInWithPassword({ email, password });
+    console.log('LOGIN RESULT:', error, data?.user?.email);
+    if (error) {
+      showAuthError(error.message);
+      btn.disabled = false; btn.textContent = 'SE CONNECTER';
+    } else if (data?.user) {
+      currentUser = data.user;
+      await loadProfile();
+      showApp();
+    }
   } catch(e) {
+    console.error('LOGIN ERROR:', e);
     showAuthError('Erreur de connexion, réessaie.');
     btn.disabled = false; btn.textContent = 'SE CONNECTER';
   }
