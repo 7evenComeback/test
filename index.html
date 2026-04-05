@@ -1008,7 +1008,7 @@ async function loadCS2() {
 }
 
 function showCS2Fallback() {
-  return '<div style="text-align:center;padding:24px"><div style="font-size:2rem;margin-bottom:12px">🔒</div><div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);margin-bottom:16px">Steam bloque les requêtes directes (CORS).<br>Clique pour voir les prix sur Steam Market.</div><a href="https://steamcommunity.com/market/search?appid=730" target="_blank" class="btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px">VOIR STEAM MARKET 🎮</a></div>';
+  return `<div style="text-align:center;padding:24px"><div style="font-size:2rem;margin-bottom:12px">🔒</div><div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);margin-bottom:16px">Steam bloque les requêtes directes (CORS).<br>Clique pour voir les prix sur Steam Market.</div><a href="https://steamcommunity.com/market/search?appid=730" target="_blank" class="btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px">VOIR STEAM MARKET 🎮</a></div>`;
 }
 
 async function searchCS2Skin() {
@@ -1035,10 +1035,10 @@ async function searchCS2Skin() {
         <a href="${link}" target="_blank" class="btn-primary" style="text-decoration:none;padding:8px 16px;font-size:0.8rem">Voir →</a>
       </div>`;
     } else {
-      resultEl.innerHTML = '<div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);padding:12px 0">Skin non trouvé — vérifie le nom exact (ex: "AK-47 | Redline (Field-Tested)")</div>';
+      resultEl.innerHTML = `<div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);padding:12px 0">Skin non trouvé — vérifie le nom exact (ex: "AK-47 | Redline (Field-Tested)")</div>`;
     }
   } catch(e) {
-    resultEl.innerHTML = '<div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);padding:12px 0">Steam bloque la requête — essaie depuis Steam directement.</div>';
+    resultEl.innerHTML = `<div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);padding:12px 0">Steam bloque la requête — essaie depuis Steam directement.</div>`;
   }
 }
 
