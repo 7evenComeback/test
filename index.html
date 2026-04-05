@@ -953,18 +953,22 @@ async function deleteUser(userId){if(!confirm('Supprimer cet utilisateur ?'))ret
 
 // ══ CS2 SKINS ══
 const CS2_SKINS = [
-  { name:'AK-47 | Redline', wear:'Field-Tested', market_hash_name:'AK-47%20%7C%20Redline%20%28Field-Tested%29' },
-  { name:'AWP | Asiimov', wear:'Field-Tested', market_hash_name:'AWP%20%7C%20Asiimov%20%28Field-Tested%29' },
-  { name:'M4A4 | Howl', wear:'Field-Tested', market_hash_name:'M4A4%20%7C%20Howl%20%28Field-Tested%29' },
-  { name:'AWP | Dragon Lore', wear:'Field-Tested', market_hash_name:'AWP%20%7C%20Dragon%20Lore%20%28Field-Tested%29' },
-  { name:'AK-47 | Fire Serpent', wear:'Field-Tested', market_hash_name:'AK-47%20%7C%20Fire%20Serpent%20%28Field-Tested%29' },
-  { name:'Karambit | Doppler', wear:'Factory New', market_hash_name:'★%20Karambit%20%7C%20Doppler%20%28Factory%20New%29' },
-  { name:'M4A1-S | Hyper Beast', wear:'Field-Tested', market_hash_name:'M4A1-S%20%7C%20Hyper%20Beast%20%28Field-Tested%29' },
-  { name:'Glock | Fade', wear:'Factory New', market_hash_name:'Glock-18%20%7C%20Fade%20%28Factory%20New%29' },
-  { name:'AK-47 | Case Hardened', wear:'Field-Tested', market_hash_name:'AK-47%20%7C%20Case%20Hardened%20%28Field-Tested%29' },
-  { name:'Desert Eagle | Blaze', wear:'Factory New', market_hash_name:'Desert%20Eagle%20%7C%20Blaze%20%28Factory%20New%29' },
-  { name:'AWP | Medusa', wear:'Field-Tested', market_hash_name:'AWP%20%7C%20Medusa%20%28Field-Tested%29' },
-  { name:'M4A4 | The Emperor', wear:'Field-Tested', market_hash_name:'M4A4%20%7C%20The%20Emperor%20%28Field-Tested%29' },
+  { name:'AK-47 | Redline', wear:'Field-Tested', market_hash_name:'AK-47%20%7C%20Redline%20%28Field-Tested%29',
+    img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot3bmf1hf1OD3fDxBvYyEkYWKhPn3DLfYkWNFpsAiiOqZp4jKhFGyqEVpNW37ItKSIAZsMQ7W_Vm3xejng5Pu7J_Inihb7HQrsX3YhBZqSQ/200fx125f' },
+  { name:'AWP | Asiimov', wear:'Field-Tested', market_hash_name:'AWP%20%7C%20Asiimov%20%28Field-Tested%29',
+    img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot3bmf1hf1OD3fDxBvYyEkYWKhP_kIbYEk2pZ18lwmO7Eu9-higq1qhY_ZD-ncYaaJlNsMVvX-FW5yOrox8e-uca_3SfqxyvKnUa90w/200fx125f' },
+  { name:'M4A4 | Howl', wear:'Field-Tested', market_hash_name:'M4A4%20%7C%20Howl%20%28Field-Tested%29',
+    img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_9mkgar3ia_mmrDIhGpB18l0jLuRpYmhiwax-BA9ZminddeQIAI5ZA3Q-gC2xOjtjJG-6ZLXiSw0DyJUdQ/200fx125f' },
+  { name:'AWP | Dragon Lore', wear:'Field-Tested', market_hash_name:'AWP%20%7C%20Dragon%20Lore%20%28Field-Tested%29',
+    img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot3bmf1hf1OD3fDxBvYyEkYWKhP_kIbYEk2pZ18lwmO7Eu9-ligi208pzNmr2I4SWIQY4YArSqFW_xOu6hMe5tZLXiSw0yFbfJBE/200fx125f' },
+  { name:'AK-47 | Fire Serpent', wear:'Field-Tested', market_hash_name:'AK-47%20%7C%20Fire%20Serpent%20%28Field-Tested%29',
+    img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot3bmf1hf1OD3fDxBvYyEkYWKhP_kIbYEk2pZ18lwmO7Eu9-hiwGwrBlpNWzzdYKSJgI-YF3T_ge2xu-705O0tZ_XiSw0e2J8bJE/200fx125f' },
+  { name:'Karambit | Doppler', wear:'Factory New', market_hash_name:'★%20Karambit%20%7C%20Doppler%20%28Factory%20New%29',
+    img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpadgf2wFdfwOP3ZTxS6eO7k4KZm_rzO67c2GtT18lwmO7Eu9-hjlXhqEBpNW3wddWVdlM4ZA7R-FHvxujtgcC5v5nIyCM/200fx125f' },
+  { name:'M4A1-S | Hyper Beast', wear:'Field-Tested', market_hash_name:'M4A1-S%20%7C%20Hyper%20Beast%20%28Field-Tested%29',
+    img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJTwT09S5moWZqOf7Ib6mk2JSu5Ih3r-Ti9ys3Abj-UE5YjilcI6WdFM4YVyD_lW-xOjq18W07ZrJ1zI97GJz-z-gZFZiBw/200fx125f' },
+  { name:'Desert Eagle | Blaze', wear:'Factory New', market_hash_name:'Desert%20Eagle%20%7C%20Blaze%20%28Factory%20New%29',
+    img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposr-3LAAhjxsNqJFE09-vloWZh8j8O67cQWoEucB1teXA54v00Qbn-BA5YD-gdteSdlJoZV3UqATtwOnuh5Tpv5-cyDQ20ihF_vM/200fx125f' },
 ];
 
 async function loadCS2() {
@@ -988,9 +992,9 @@ async function loadCS2() {
       const link = `https://steamcommunity.com/market/listings/730/${skin.market_hash_name}`;
       return `<div class="cs2-card" onclick="window.open('${link}','_blank')">
         <img class="cs2-card-img"
-          src="https://community.cloudflare.steamstatic.com/economy/image/class/730/${Math.floor(Math.random()*999999999)}/200fx125f"
+          src="${skin.img}"
           alt="${skin.name}"
-          onerror="this.src='https://via.placeholder.com/200x100/1a1a35/a855f7?text=CS2'"
+          onerror="this.style.display='none'"
         >
         <div class="cs2-card-name">${skin.name}</div>
         <div class="cs2-card-wear">${skin.wear}</div>
@@ -1044,19 +1048,27 @@ async function searchCS2Skin() {
 
 function loadCases() {
   const cases = [
-    { name:'Kilowatt Case', emoji:'⚡', price:'3,50€', tag:'hot', desc:'La plus récente, contient des skins très demandés. Prix en hausse constante.' },
-    { name:'Recoil Case', emoji:'🎯', price:'0,80€', tag:'hot', desc:'Contient le Fade M4A1-S et le Gloves Recoil. Bon rapport qualité/prix.' },
-    { name:'Dreams & Nightmares', emoji:'🌙', price:'0,60€', tag:'mid', desc:'Skins créés par la communauté. Certains montent bien.' },
-    { name:'Revolution Case', emoji:'🔴', price:'0,90€', tag:'hot', desc:'Contient l\'AK-47 Leet Museo. Très populaire en ce moment.' },
-    { name:'Fracture Case', emoji:'💀', price:'0,65€', tag:'mid', desc:'Contient le Desert Eagle Printstream. Classique.' },
-    { name:'Clutch Case', emoji:'🤝', price:'0,40€', tag:'low', desc:'Ancienne caisse, prix stable. Contient des gloves intéressants.' },
-    { name:'Prisma 2 Case', emoji:'🌈', price:'0,35€', tag:'low', desc:'Prix bas, skins pas très demandés. Pas recommandé.' },
-    { name:'Danger Zone Case', emoji:'☢️', price:'0,45€', tag:'mid', desc:'Contient le Glock-18 Wasteland Rebel. Prix correct.' },
+    { name:'Kilowatt Case', price:'3,50€', tag:'hot', desc:'La plus récente, très demandée. Prix en hausse.',
+      img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouqbezSRgPOjBfzhr09C7m4OPh8jLP6jVktFSiMF-s--h54n3nBmy_kFvYjr2IoaVdg43ZlnT_Fjtlbu80J_o7cyXiSEk/200fx125f' },
+    { name:'Recoil Case', price:'0,80€', tag:'hot', desc:'Contient le Fade M4A1-S. Bon rapport qualité/prix.',
+      img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouqbezSRgPOjBfzhr09C7m4OPh8jLP6jVktFSiMF-s--h54v301Gy-UY6Ymrwdo6cJA44aFiBqFO5lOy7jpG96JKcyCBm/200fx125f' },
+    { name:'Dreams & Nightmares', price:'0,60€', tag:'mid', desc:'Skins communautaires. Certains montent bien.',
+      img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouqbezSRgPOjBfzhr09C7m4OPh8jLP6jVktFSiMF-s--h54mKhBXi_BBuYjn-SI_C_3E5JA1mTqFbtl-q5ipG7vp3JwkB3/200fx125f' },
+    { name:'Revolution Case', price:'0,90€', tag:'hot', desc:'Contient le AK-47 Leet Museo. Très populaire.',
+      img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouqbezSRgPOjBfzhr09C7m4OPh8jLP6jVktFSiMF-s--h54v3L0AiA_BBtYT-3LNKWegE4ZgvRqlXtku-5hpW8uMyXiSEk/200fx125f' },
+    { name:'Fracture Case', price:'0,65€', tag:'mid', desc:'Contient le Desert Eagle Printstream. Classique.',
+      img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouqbezSRgPOjBfzhr09C7m4OPh8jLP6jVktFSiMF-s--h54v301Gy-UY6YmruSIqeXcFE4ZQ3SqFG9l-q-hZS5vp2XzgNr/200fx125f' },
+    { name:'Clutch Case', price:'0,40€', tag:'low', desc:'Ancienne caisse. Contient des gloves intéressants.',
+      img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouqbezSRgPOjBfzhr09C7m4OPh8jLP6jVktFSiMF-s--h54v301Gy-UY6YmrPEoOWe1VBjZgrSqEa_k-y5h5G5vp2XzgNr/200fx125f' },
+    { name:'Danger Zone Case', price:'0,45€', tag:'mid', desc:'Contient le Glock-18 Wasteland Rebel.',
+      img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouqbezSRgPOjBfzhr09C7m4OPh8jLP6jVktFSiMF-s--h54v301Gy-UY6YmrHoqbcF8waVEjZgrSqFG9l-q-hZS5vp2XzgNr/200fx125f' },
+    { name:'Prisma 2 Case', price:'0,35€', tag:'low', desc:'Prix bas, skins peu demandés.',
+      img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpouqbezSRgPOjBfzhr09C7m4OPh8jLP6jVktFSiMF-s--h54v301Gy-UY6YmrWIuWcV09YFEjZgrSqFG9l-q-hZS5vp2XzgNr/200fx125f' },
   ];
 
   document.getElementById('cs2Cases').innerHTML = '<div class="cases-grid">' + cases.map(c => `
     <div class="case-card">
-      <span class="case-emoji">${c.emoji}</span>
+      <img src="${c.img}" alt="${c.name}" style="width:120px;height:80px;object-fit:contain;margin-bottom:8px;filter:drop-shadow(0 4px 12px rgba(251,146,60,0.3))" onerror="this.style.display='none'">
       <div class="case-name">${c.name}</div>
       <div class="case-price">${c.price}</div>
       <span class="case-tag ${c.tag}">${c.tag==='hot'?'🔥 Tendance':c.tag==='mid'?'⚡ Moyen':'❄️ Faible'}</span>
