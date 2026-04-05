@@ -271,6 +271,49 @@ body::before {
 .graph-container { padding:24px; position:relative; }
 .graph-canvas-wrap { position:relative; height:320px; }
 
+.crypto-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+.crypto-card {
+  background:var(--bg3); border:1px solid rgba(168,85,247,0.12);
+  border-radius:12px; padding:16px; transition:all 0.3s; cursor:pointer;
+  text-decoration:none; display:block;
+}
+.crypto-card:hover { border-color:rgba(168,85,247,0.4); transform:translateY(-4px); box-shadow:0 8px 30px rgba(168,85,247,0.15); }
+.crypto-card.up { border-color:rgba(74,222,128,0.2); }
+.crypto-card.up:hover { border-color:rgba(74,222,128,0.5); box-shadow:0 8px 30px rgba(74,222,128,0.15); }
+.crypto-card.down { border-color:rgba(248,113,113,0.2); }
+.crypto-card.down:hover { border-color:rgba(248,113,113,0.5); box-shadow:0 8px 30px rgba(248,113,113,0.15); }
+.crypto-header { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.crypto-icon { width:40px; height:40px; border-radius:50%; object-fit:cover; background:var(--bg2); flex-shrink:0; }
+.crypto-icon-placeholder { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--purple),var(--pink)); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.crypto-name { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.1rem; letter-spacing:1px; }
+.crypto-symbol { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); letter-spacing:2px; }
+.crypto-price { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.6rem; line-height:1; margin-bottom:8px; }
+.crypto-price.up { background:linear-gradient(135deg,var(--green),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.crypto-price.down { background:linear-gradient(135deg,var(--danger),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.crypto-price.neutral { background:linear-gradient(135deg,var(--purple),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.crypto-change { display:inline-flex; align-items:center; gap:4px; font-family:'DM Mono',monospace; font-size:0.72rem; padding:3px 10px; border-radius:20px; font-weight:500; }
+.crypto-change.up { background:rgba(74,222,128,0.15); color:var(--green); }
+.crypto-change.down { background:rgba(248,113,113,0.15); color:var(--danger); }
+.crypto-mcap { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); margin-top:8px; }
+
+/* PUMP.FUN LIST */
+.pump-list { display:flex; flex-direction:column; gap:8px; }
+.pump-item {
+  display:grid; grid-template-columns:auto 1fr auto auto;
+  align-items:center; gap:12px; padding:12px 16px;
+  background:var(--bg3); border:1px solid rgba(236,72,153,0.1);
+  border-radius:10px; transition:all 0.2s; text-decoration:none;
+}
+.pump-item:hover { border-color:rgba(236,72,153,0.3); transform:translateX(4px); }
+.pump-img { width:40px; height:40px; border-radius:8px; object-fit:cover; background:var(--bg2); flex-shrink:0; }
+.pump-img-placeholder { width:40px; height:40px; border-radius:8px; background:linear-gradient(135deg,var(--pink),var(--orange)); display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+.pump-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; letter-spacing:1px; }
+.pump-ticker { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--muted); }
+.pump-desc { font-size:0.75rem; color:var(--muted); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:300px; }
+.pump-mcap { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--cyan); text-align:right; white-space:nowrap; }
+.pump-age { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); text-align:right; }
+.pump-new { font-family:'DM Mono',monospace; font-size:0.58rem; background:rgba(236,72,153,0.15); color:var(--pink); border:1px solid rgba(236,72,153,0.3); padding:2px 8px; border-radius:20px; }
+
 .loading { display:flex; align-items:center; justify-content:center; padding:40px; font-family:'DM Mono',monospace; font-size:0.75rem; color:var(--muted); gap:10px; }
 .spinner { width:16px; height:16px; border:2px solid rgba(168,85,247,0.2); border-top-color:var(--purple); border-radius:50%; animation:spin 0.8s linear infinite; }
 @keyframes spin { to{transform:rotate(360deg)} }
@@ -346,6 +389,7 @@ body::before {
     <div class="page-tab" onclick="switchPage('nutrition')">🥗 NUTRITION</div>
     <div class="page-tab" onclick="switchPage('tips')">💡 CONSEILS</div>
     <div class="page-tab" onclick="switchPage('graph')">📈 ÉVOLUTION</div>
+    <div class="page-tab" onclick="switchPage('crypto')">🚀 CRYPTO</div>
   </div>
 
   <!-- DASHBOARD -->
@@ -519,6 +563,41 @@ body::before {
     </div>
   </div>
 
+  <!-- CRYPTO -->
+  <div class="page" id="page-crypto">
+
+    <!-- TOP MEMECOINS -->
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-header">
+        <div class="panel-title"><div class="dot" style="background:var(--yellow);box-shadow:0 0 8px var(--yellow)"></div>TOP MEMECOINS 🐸</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted)" id="cryptoLastUpdate">—</span>
+          <button class="btn-primary" style="padding:6px 14px;font-size:0.75rem" onclick="loadCrypto()">↻ REFRESH</button>
+        </div>
+      </div>
+      <div id="cryptoList" style="padding:16px 24px">
+        <div class="loading"><div class="spinner"></div> Chargement des prix...</div>
+      </div>
+    </div>
+
+    <!-- PUMP.FUN -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title"><div class="dot" style="background:var(--pink);box-shadow:0 0 8px var(--pink)"></div>🔥 NOUVEAUX SUR PUMP.FUN</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted)" id="pumpLastUpdate">—</span>
+          <button class="btn-primary orange" style="padding:6px 14px;font-size:0.75rem" onclick="loadPump()">↻ REFRESH</button>
+        </div>
+      </div>
+      <div style="padding:12px 24px;background:rgba(248,113,113,0.06);border-bottom:1px solid var(--border)">
+        <p style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--danger)">⚠️ RISQUE EXTRÊME — 99% des tokens pump.fun finissent à 0. Ne jamais investir ce qu'on peut pas se permettre de perdre.</p>
+      </div>
+      <div id="pumpList" style="padding:16px 24px">
+        <div class="loading"><div class="spinner"></div> Chargement pump.fun...</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ADMIN -->
   <div class="page" id="page-admin">
     <div class="panel">
@@ -641,12 +720,13 @@ function switchPage(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.page-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+page)?.classList.add('active');
-  const pages=['dashboard','workout','weight','nutrition','tips','graph','admin'];
+  const pages=['dashboard','workout','weight','nutrition','tips','graph','crypto','admin'];
   const tabs=document.querySelectorAll('.page-tab');
   const idx=pages.indexOf(page);
   if(idx>=0&&tabs[idx])tabs[idx].classList.add('active');
   if(page==='admin')loadAdminPanel();
   if(page==='graph')renderGraph();
+  if(page==='crypto'){loadCrypto();loadPump();}
 }
 
 function changeShake(delta){
@@ -782,6 +862,114 @@ async function loadAdminPanel(){
 }
 async function toggleAdmin(userId,makeAdmin){await sb.from('profiles').update({is_admin:makeAdmin}).eq('id',userId);loadAdminPanel();showToast(makeAdmin?'✅ Admin accordé 👑':'✅ Admin retiré');}
 async function deleteUser(userId){if(!confirm('Supprimer cet utilisateur ?'))return;await sb.from('profiles').delete().eq('id',userId);loadAdminPanel();showToast('🗑️ Utilisateur supprimé');}
+
+// ══ CRYPTO ══
+async function loadCrypto() {
+  document.getElementById('cryptoList').innerHTML = '<div class="loading"><div class="spinner"></div> Chargement des prix...</div>';
+  try {
+    const ids = 'dogecoin,shiba-inu,pepe,dogwifcoin,bonk,brett,floki,babydoge-coin,mog-coin,popcat';
+    const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`);
+    const data = await res.json();
+    if (!data || !Array.isArray(data)) throw new Error('Bad response');
+
+    const html = '<div class="crypto-grid">' + data.map(coin => {
+      const change = coin.price_change_percentage_24h || 0;
+      const dir = change > 0 ? 'up' : change < 0 ? 'down' : 'neutral';
+      const sign = change > 0 ? '+' : '';
+      const price = coin.current_price < 0.01
+        ? coin.current_price.toFixed(8)
+        : coin.current_price < 1
+        ? coin.current_price.toFixed(5)
+        : coin.current_price.toFixed(4);
+      const mcap = coin.market_cap > 1e9
+        ? (coin.market_cap/1e9).toFixed(2)+'B'
+        : (coin.market_cap/1e6).toFixed(0)+'M';
+      return `<div class="crypto-card ${dir}" onclick="window.open('https://www.coingecko.com/en/coins/${coin.id}','_blank')">
+        <div class="crypto-header">
+          <img class="crypto-icon" src="${coin.image}" alt="${coin.name}" onerror="this.style.display='none'">
+          <div>
+            <div class="crypto-name">${coin.name}</div>
+            <div class="crypto-symbol">${coin.symbol.toUpperCase()}</div>
+          </div>
+        </div>
+        <div class="crypto-price ${dir}">$${price}</div>
+        <div>
+          <span class="crypto-change ${dir}">${dir==='up'?'▲':'▼'} ${sign}${change.toFixed(2)}%</span>
+        </div>
+        <div class="crypto-mcap">Market Cap : $${mcap}</div>
+      </div>`;
+    }).join('') + '</div>';
+
+    document.getElementById('cryptoList').innerHTML = html;
+    document.getElementById('cryptoLastUpdate').textContent = 'Mis à jour : ' + new Date().toLocaleTimeString('fr-FR');
+  } catch(e) {
+    document.getElementById('cryptoList').innerHTML = '<div class="exo-empty">Erreur de chargement — rate limit CoinGecko, réessaie dans 1 min 🕐</div>';
+  }
+}
+
+async function loadPump() {
+  document.getElementById('pumpList').innerHTML = '<div class="loading"><div class="spinner"></div> Chargement pump.fun...</div>';
+  try {
+    // Pump.fun public API
+    const res = await fetch('https://frontend-api.pump.fun/coins?offset=0&limit=20&sort=created_timestamp&order=DESC&includeNsfw=false');
+    const data = await res.json();
+    if (!data || !Array.isArray(data)) throw new Error('Bad response');
+
+    const html = '<div class="pump-list">' + data.map(coin => {
+      const mcap = coin.usd_market_cap
+        ? coin.usd_market_cap > 1e6
+          ? '$'+(coin.usd_market_cap/1e6).toFixed(1)+'M'
+          : '$'+(coin.usd_market_cap/1000).toFixed(0)+'K'
+        : '—';
+      const age = coin.created_timestamp
+        ? getAge(coin.created_timestamp)
+        : '—';
+      const desc = coin.description ? coin.description.substring(0,60)+'...' : 'Pas de description';
+      const link = `https://pump.fun/${coin.mint}`;
+      return `<a class="pump-item" href="${link}" target="_blank" rel="noopener">
+        ${coin.image_uri
+          ? `<img class="pump-img" src="${coin.image_uri}" alt="${coin.name}" onerror="this.outerHTML='<div class=\'pump-img-placeholder\'>🪙</div>'">`
+          : '<div class="pump-img-placeholder">🪙</div>'}
+        <div>
+          <div class="pump-name">${coin.name||'???'} <span class="pump-new">NEW</span></div>
+          <div class="pump-ticker">$${coin.symbol||'???'}</div>
+          <div class="pump-desc">${desc}</div>
+        </div>
+        <div>
+          <div class="pump-mcap">${mcap}</div>
+          <div class="pump-age">${age}</div>
+        </div>
+      </a>`;
+    }).join('') + '</div>';
+
+    document.getElementById('pumpList').innerHTML = html;
+    document.getElementById('pumpLastUpdate').textContent = 'Mis à jour : ' + new Date().toLocaleTimeString('fr-FR');
+  } catch(e) {
+    // Fallback si pump.fun bloque (CORS)
+    document.getElementById('pumpList').innerHTML = `
+      <div style="text-align:center;padding:24px">
+        <div style="font-size:2rem;margin-bottom:12px">🔒</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);margin-bottom:16px">
+          Pump.fun bloque les requêtes directes depuis le navigateur (CORS).<br>
+          Clique le bouton pour voir les derniers tokens directement sur pump.fun.
+        </div>
+        <a href="https://pump.fun" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px">
+          VOIR SUR PUMP.FUN 🚀
+        </a>
+      </div>`;
+    document.getElementById('pumpLastUpdate').textContent = '';
+  }
+}
+
+function getAge(timestamp) {
+  const diff = Date.now() - timestamp;
+  const mins = Math.floor(diff/60000);
+  const hours = Math.floor(mins/60);
+  if (mins < 1) return 'À l\'instant';
+  if (mins < 60) return `${mins}min`;
+  if (hours < 24) return `${hours}h`;
+  return `${Math.floor(hours/24)}j`;
+}
 
 function renderGraph(){
   if(weightLog.length===0){
