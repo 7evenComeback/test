@@ -1274,11 +1274,8 @@ function showToast(msg){
   clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>toast.classList.remove('show'),3000);
 }
 
-document.getElementById('cs2Search')?.addEventListener('keydown', e => {
-  if(e.key==='Enter') searchCS2Skin();
-});
-
 document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.activeElement.id==='cs2Search') searchCS2Skin();
   if(e.key==='Enter'){
     if(document.activeElement.id==='weightInput')addWeight();
     if(['loginEmail','loginPassword'].includes(document.activeElement.id))loginEmail();
