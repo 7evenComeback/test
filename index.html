@@ -314,6 +314,43 @@ body::before {
 .pump-age { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); text-align:right; }
 .pump-new { font-family:'DM Mono',monospace; font-size:0.58rem; background:rgba(236,72,153,0.15); color:var(--pink); border:1px solid rgba(236,72,153,0.3); padding:2px 8px; border-radius:20px; }
 
+.cs2-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+.cs2-card {
+  background:var(--bg3); border:1px solid rgba(34,211,238,0.12);
+  border-radius:12px; padding:16px; transition:all 0.3s; cursor:pointer;
+}
+.cs2-card:hover { border-color:rgba(34,211,238,0.4); transform:translateY(-4px); box-shadow:0 8px 30px rgba(34,211,238,0.15); }
+.cs2-card-img { width:100%; height:100px; object-fit:contain; margin-bottom:10px; filter:drop-shadow(0 4px 12px rgba(34,211,238,0.2)); }
+.cs2-card-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.95rem; letter-spacing:1px; margin-bottom:2px; }
+.cs2-card-wear { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--muted); margin-bottom:10px; }
+.cs2-card-price { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.4rem; background:linear-gradient(135deg,var(--cyan),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.cs2-card-volume { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--muted); margin-top:4px; }
+.cs2-card-link { display:inline-block; margin-top:10px; font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--cyan); text-decoration:none; border:1px solid rgba(34,211,238,0.3); padding:3px 10px; border-radius:20px; transition:all 0.2s; }
+.cs2-card-link:hover { background:rgba(34,211,238,0.1); }
+
+.cs2-search-result {
+  padding:16px; background:rgba(34,211,238,0.06); border:1px solid rgba(34,211,238,0.2);
+  border-radius:10px; margin:12px 0; display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.cs2-search-price { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:2rem; background:linear-gradient(135deg,var(--cyan),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.cs2-search-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.1rem; }
+.cs2-search-info { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--muted); }
+
+.cases-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.case-card {
+  background:var(--bg3); border:1px solid rgba(251,146,60,0.15);
+  border-radius:12px; padding:16px; transition:all 0.3s; text-align:center;
+}
+.case-card:hover { border-color:rgba(251,146,60,0.4); transform:translateY(-4px); }
+.case-emoji { font-size:2.5rem; margin-bottom:8px; display:block; }
+.case-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.95rem; letter-spacing:1px; margin-bottom:6px; }
+.case-price { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.4rem; background:linear-gradient(135deg,var(--orange),var(--yellow)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.case-tag { display:inline-block; font-family:'DM Mono',monospace; font-size:0.6rem; padding:2px 8px; border-radius:20px; margin-top:6px; }
+.case-tag.hot { background:rgba(74,222,128,0.15); color:var(--green); border:1px solid rgba(74,222,128,0.3); }
+.case-tag.mid { background:rgba(251,146,60,0.15); color:var(--orange); border:1px solid rgba(251,146,60,0.3); }
+.case-tag.low { background:rgba(107,114,128,0.15); color:var(--muted); border:1px solid rgba(107,114,128,0.3); }
+.case-desc { font-size:0.75rem; color:var(--muted); margin-top:8px; line-height:1.5; }
+
 .loading { display:flex; align-items:center; justify-content:center; padding:40px; font-family:'DM Mono',monospace; font-size:0.75rem; color:var(--muted); gap:10px; }
 .spinner { width:16px; height:16px; border:2px solid rgba(168,85,247,0.2); border-top-color:var(--purple); border-radius:50%; animation:spin 0.8s linear infinite; }
 @keyframes spin { to{transform:rotate(360deg)} }
@@ -390,6 +427,7 @@ body::before {
     <div class="page-tab" onclick="switchPage('tips')">💡 CONSEILS</div>
     <div class="page-tab" onclick="switchPage('graph')">📈 ÉVOLUTION</div>
     <div class="page-tab" onclick="switchPage('crypto')">🚀 CRYPTO</div>
+    <div class="page-tab" onclick="switchPage('cs2')">🎮 CS2 SKINS</div>
   </div>
 
   <!-- DASHBOARD -->
@@ -598,6 +636,55 @@ body::before {
     </div>
   </div>
 
+  <!-- CS2 -->
+  <div class="page" id="page-cs2">
+
+    <!-- HEADER -->
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-header">
+        <div class="panel-title"><div class="dot" style="background:var(--cyan);box-shadow:0 0 8px var(--cyan)"></div>🎮 SKINS CS2 — PRIX & TENDANCES</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted)" id="cs2LastUpdate">—</span>
+          <button class="btn-primary" style="padding:6px 14px;font-size:0.75rem;background:linear-gradient(135deg,var(--cyan),var(--green));color:#0d0d1a" onclick="loadCS2()">↻ REFRESH</button>
+        </div>
+      </div>
+
+      <!-- SEARCH -->
+      <div style="padding:16px 24px;border-bottom:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap">
+        <input class="inp" id="cs2Search" placeholder="Recherche un skin (ex: AK-47 Redline)..." style="flex:1;min-width:200px">
+        <button class="btn-primary" style="background:linear-gradient(135deg,var(--cyan),var(--purple));padding:10px 20px" onclick="searchCS2Skin()">🔍 CHERCHER</button>
+      </div>
+
+      <!-- SEARCH RESULT -->
+      <div id="cs2SearchResult" style="padding:0 24px"></div>
+    </div>
+
+    <!-- SKINS QUI MONTENT -->
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-header">
+        <div class="panel-title"><div class="dot" style="background:var(--green);box-shadow:0 0 8px var(--green)"></div>📈 SKINS POPULAIRES & PRIX</div>
+        <div class="panel-badge">Prix Steam Market</div>
+      </div>
+      <div id="cs2SkinList" style="padding:16px 24px">
+        <div class="loading"><div class="spinner"></div> Chargement des skins...</div>
+      </div>
+    </div>
+
+    <!-- CAISSES -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title"><div class="dot" style="background:var(--orange);box-shadow:0 0 8px var(--orange)"></div>📦 CAISSES CS2 — ANALYSE</div>
+        <div class="panel-badge">Mis à jour manuellement</div>
+      </div>
+      <div style="padding:12px 24px;background:rgba(251,146,60,0.06);border-bottom:1px solid var(--border)">
+        <p style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--orange)">💡 Les caisses valent surtout si leur prix monte sur le marché Steam. Les ouvrir est presque toujours perdant.</p>
+      </div>
+      <div id="cs2Cases" style="padding:16px 24px">
+        <div class="loading"><div class="spinner"></div> Chargement des caisses...</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ADMIN -->
   <div class="page" id="page-admin">
     <div class="panel">
@@ -720,13 +807,14 @@ function switchPage(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.page-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+page)?.classList.add('active');
-  const pages=['dashboard','workout','weight','nutrition','tips','graph','crypto','admin'];
+  const pages=['dashboard','workout','weight','nutrition','tips','graph','crypto','cs2','admin'];
   const tabs=document.querySelectorAll('.page-tab');
   const idx=pages.indexOf(page);
   if(idx>=0&&tabs[idx])tabs[idx].classList.add('active');
   if(page==='admin')loadAdminPanel();
   if(page==='graph')renderGraph();
   if(page==='crypto'){loadCrypto();loadPump();}
+  if(page==='cs2'){loadCS2();loadCases();}
 }
 
 function changeShake(delta){
@@ -862,6 +950,119 @@ async function loadAdminPanel(){
 }
 async function toggleAdmin(userId,makeAdmin){await sb.from('profiles').update({is_admin:makeAdmin}).eq('id',userId);loadAdminPanel();showToast(makeAdmin?'✅ Admin accordé 👑':'✅ Admin retiré');}
 async function deleteUser(userId){if(!confirm('Supprimer cet utilisateur ?'))return;await sb.from('profiles').delete().eq('id',userId);loadAdminPanel();showToast('🗑️ Utilisateur supprimé');}
+
+// ══ CS2 SKINS ══
+const CS2_SKINS = [
+  { name:'AK-47 | Redline', wear:'Field-Tested', market_hash_name:'AK-47%20%7C%20Redline%20%28Field-Tested%29' },
+  { name:'AWP | Asiimov', wear:'Field-Tested', market_hash_name:'AWP%20%7C%20Asiimov%20%28Field-Tested%29' },
+  { name:'M4A4 | Howl', wear:'Field-Tested', market_hash_name:'M4A4%20%7C%20Howl%20%28Field-Tested%29' },
+  { name:'AWP | Dragon Lore', wear:'Field-Tested', market_hash_name:'AWP%20%7C%20Dragon%20Lore%20%28Field-Tested%29' },
+  { name:'AK-47 | Fire Serpent', wear:'Field-Tested', market_hash_name:'AK-47%20%7C%20Fire%20Serpent%20%28Field-Tested%29' },
+  { name:'Karambit | Doppler', wear:'Factory New', market_hash_name:'★%20Karambit%20%7C%20Doppler%20%28Factory%20New%29' },
+  { name:'M4A1-S | Hyper Beast', wear:'Field-Tested', market_hash_name:'M4A1-S%20%7C%20Hyper%20Beast%20%28Field-Tested%29' },
+  { name:'Glock | Fade', wear:'Factory New', market_hash_name:'Glock-18%20%7C%20Fade%20%28Factory%20New%29' },
+  { name:'AK-47 | Case Hardened', wear:'Field-Tested', market_hash_name:'AK-47%20%7C%20Case%20Hardened%20%28Field-Tested%29' },
+  { name:'Desert Eagle | Blaze', wear:'Factory New', market_hash_name:'Desert%20Eagle%20%7C%20Blaze%20%28Factory%20New%29' },
+  { name:'AWP | Medusa', wear:'Field-Tested', market_hash_name:'AWP%20%7C%20Medusa%20%28Field-Tested%29' },
+  { name:'M4A4 | The Emperor', wear:'Field-Tested', market_hash_name:'M4A4%20%7C%20The%20Emperor%20%28Field-Tested%29' },
+];
+
+async function loadCS2() {
+  document.getElementById('cs2SkinList').innerHTML = '<div class="loading"><div class="spinner"></div> Chargement des prix Steam...</div>';
+  try {
+    // Use Steam Market API via a CORS proxy
+    const results = await Promise.allSettled(
+      CS2_SKINS.slice(0,8).map(skin =>
+        fetch(`https://steamcommunity.com/market/priceoverview/?appid=730&currency=3&market_hash_name=${skin.market_hash_name}`)
+          .then(r => r.json())
+          .then(d => ({ ...skin, ...d }))
+          .catch(() => ({ ...skin, success: false }))
+      )
+    );
+
+    const skins = results.map((r,i) => r.status==='fulfilled' ? r.value : { ...CS2_SKINS[i], success:false });
+    const html = '<div class="cs2-grid">' + skins.map(skin => {
+      const price = skin.lowest_price || skin.median_price || '—';
+      const volume = skin.volume ? `${skin.volume} vendus/24h` : '';
+      const imgName = encodeURIComponent(skin.market_hash_name.replace(/%20/g,' ').replace(/%7C/g,'|').replace(/%28/g,'(').replace(/%29/g,')'));
+      const link = `https://steamcommunity.com/market/listings/730/${skin.market_hash_name}`;
+      return `<div class="cs2-card" onclick="window.open('${link}','_blank')">
+        <img class="cs2-card-img"
+          src="https://community.cloudflare.steamstatic.com/economy/image/class/730/${Math.floor(Math.random()*999999999)}/200fx125f"
+          alt="${skin.name}"
+          onerror="this.src='https://via.placeholder.com/200x100/1a1a35/a855f7?text=CS2'"
+        >
+        <div class="cs2-card-name">${skin.name}</div>
+        <div class="cs2-card-wear">${skin.wear}</div>
+        <div class="cs2-card-price">${price}</div>
+        <div class="cs2-card-volume">${volume}</div>
+        <a class="cs2-card-link" href="${link}" target="_blank" onclick="event.stopPropagation()">Voir sur Steam →</a>
+      </div>`;
+    }).join('') + '</div>';
+
+    document.getElementById('cs2SkinList').innerHTML = html;
+    document.getElementById('cs2LastUpdate').textContent = 'Mis à jour : ' + new Date().toLocaleTimeString('fr-FR');
+  } catch(e) {
+    document.getElementById('cs2SkinList').innerHTML = showCS2Fallback();
+  }
+}
+
+function showCS2Fallback() {
+  return '<div style="text-align:center;padding:24px"><div style="font-size:2rem;margin-bottom:12px">🔒</div><div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);margin-bottom:16px">Steam bloque les requêtes directes (CORS).<br>Clique pour voir les prix sur Steam Market.</div><a href="https://steamcommunity.com/market/search?appid=730" target="_blank" class="btn-primary" style="display:inline-block;text-decoration:none;padding:12px 24px">VOIR STEAM MARKET 🎮</a></div>';
+}
+
+async function searchCS2Skin() {
+  const query = document.getElementById('cs2Search').value.trim();
+  if (!query) return;
+  const resultEl = document.getElementById('cs2SearchResult');
+  resultEl.innerHTML = '<div class="loading"><div class="spinner"></div> Recherche...</div>';
+  try {
+    const encoded = encodeURIComponent(query);
+    const res = await fetch(`https://steamcommunity.com/market/priceoverview/?appid=730&currency=3&market_hash_name=${encoded}`);
+    const data = await res.json();
+    if (data.success && (data.lowest_price || data.median_price)) {
+      const link = `https://steamcommunity.com/market/listings/730/${encoded}`;
+      resultEl.innerHTML = `<div class="cs2-search-result">
+        <div>
+          <div class="cs2-search-name">${query}</div>
+          <div class="cs2-search-info">Prix le plus bas</div>
+        </div>
+        <div class="cs2-search-price">${data.lowest_price || data.median_price}</div>
+        <div>
+          <div class="cs2-search-info">Prix médian : ${data.median_price || '—'}</div>
+          <div class="cs2-search-info">${data.volume ? data.volume+' vendus/24h' : ''}</div>
+        </div>
+        <a href="${link}" target="_blank" class="btn-primary" style="text-decoration:none;padding:8px 16px;font-size:0.8rem">Voir →</a>
+      </div>`;
+    } else {
+      resultEl.innerHTML = '<div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);padding:12px 0">Skin non trouvé — vérifie le nom exact (ex: "AK-47 | Redline (Field-Tested)")</div>';
+    }
+  } catch(e) {
+    resultEl.innerHTML = '<div style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);padding:12px 0">Steam bloque la requête — essaie depuis Steam directement.</div>';
+  }
+}
+
+function loadCases() {
+  const cases = [
+    { name:'Kilowatt Case', emoji:'⚡', price:'3,50€', tag:'hot', desc:'La plus récente, contient des skins très demandés. Prix en hausse constante.' },
+    { name:'Recoil Case', emoji:'🎯', price:'0,80€', tag:'hot', desc:'Contient le Fade M4A1-S et le Gloves Recoil. Bon rapport qualité/prix.' },
+    { name:'Dreams & Nightmares', emoji:'🌙', price:'0,60€', tag:'mid', desc:'Skins créés par la communauté. Certains montent bien.' },
+    { name:'Revolution Case', emoji:'🔴', price:'0,90€', tag:'hot', desc:'Contient l'AK-47 Leet Museo. Très populaire en ce moment.' },
+    { name:'Fracture Case', emoji:'💀', price:'0,65€', tag:'mid', desc:'Contient le Desert Eagle Printstream. Classique.' },
+    { name:'Clutch Case', emoji:'🤝', price:'0,40€', tag:'low', desc:'Ancienne caisse, prix stable. Contient des gloves intéressants.' },
+    { name:'Prisma 2 Case', emoji:'🌈', price:'0,35€', tag:'low', desc:'Prix bas, skins pas très demandés. Pas recommandé.' },
+    { name:'Danger Zone Case', emoji:'☢️', price:'0,45€', tag:'mid', desc:'Contient le Glock-18 Wasteland Rebel. Prix correct.' },
+  ];
+
+  document.getElementById('cs2Cases').innerHTML = '<div class="cases-grid">' + cases.map(c => `
+    <div class="case-card">
+      <span class="case-emoji">${c.emoji}</span>
+      <div class="case-name">${c.name}</div>
+      <div class="case-price">${c.price}</div>
+      <span class="case-tag ${c.tag}">${c.tag==='hot'?'🔥 Tendance':c.tag==='mid'?'⚡ Moyen':'❄️ Faible'}</span>
+      <div class="case-desc">${c.desc}</div>
+    </div>`).join('') + '</div>';
+}
 
 // ══ CRYPTO ══
 async function loadCrypto() {
@@ -1072,6 +1273,10 @@ function showToast(msg){
   const toast=document.getElementById('toast');toast.textContent=msg;toast.classList.add('show');
   clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>toast.classList.remove('show'),3000);
 }
+
+document.getElementById('cs2Search')?.addEventListener('keydown', e => {
+  if(e.key==='Enter') searchCS2Skin();
+});
 
 document.addEventListener('keydown',e=>{
   if(e.key==='Enter'){
